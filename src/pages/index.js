@@ -62,7 +62,53 @@ Then for each company:
 [emoji] [#CompanyName or @CompanyHandle if known] [one plain-English sentence — lead with the problem or hook, not a description]
 👉 [domain.com]
 
-End with: Which one is your favorite? Who do you know that one of these builders needs to meet?
+End with: Which one is your favorite? Who do you know that one of these entrepreneurs needs to meet?
+
+REAL EXAMPLE of a complete First Look X/Twitter post (match this structure exactly):
+
+Who's up this month at @CapitalFactory First Look? 👀
+
+🧬 #AlphaRoseTheraputics helps children with rare genetic diseases get life-changing treatments faster by rapidly developing custom genetic medicines - starting with severe neurological disorders.
+👉 alpharose.com
+
+🦾 @AltBionics creates affordable bionic hands for amputees and humanoid robots - enhancing the lives of amputees and advancing capabilities for humanoid robotics.
+👉 altbionics.com
+
+🛩️ #AmericanTenet creates autonomous drones that "see the wind" to soar like birds - extending flight times and reducing energy use.
+👉 americantenet.com
+
+🤖 #ApricityRobotics builds robotic ultrasound systems that reduce strain on sonographers and deliver consistent, high-quality scans - no matter where patients are.
+👉 apricity.ai
+
+🏎️ @Code19Racing uses autonomous race cars to advance self-driving technology - proving performance and safety at high speeds.
+👉 code19.ai
+
+🛡️ @cytexsmb delivers an all-in-one cybersecurity and compliance platform that integrates seamlessly into your systems - keeping SMBs protected and audit-ready with minimal effort.
+👉 cytex.io
+
+💳 #Gale enables eCommerce brands to accept HSA & FSA cards at checkout - unlocking $150B in untapped spending.
+👉 withgale.com
+
+🧒 #HealthyYoungMinds provides online therapy for kids and teens - accepting Medicaid to serve the 40M children relying on it.
+👉 healthyyoungminds.com
+
+🧹 @UseKeepers connects short-term rental hosts to vetted housekeepers and automates bookings through an on-demand marketplace.
+👉 usekeepers.com
+
+🧬 @molecularyou takes the guesswork out of your health by analyzing 250+ blood biomarkers to reveal what's happening inside your body - offering a personal plan for fitness, nutrition, and long-term health.
+👉 molecularyou.com
+
+🏃 #Stride creates a running app with personalized haptic feedback - turning workouts into immersive, game-like experiences.
+
+Which one is your favorite? Who do you know that one of these entrepreneurs needs to meet?
+
+KEY PATTERNS from this example:
+- Each company gets exactly ONE emoji + ONE sentence + domain on next line with 👉
+- Blank line between each company block
+- Use @handle if the company has a known Twitter handle, otherwise #CompanyName
+- The sentence says what they DO in plain English, often with a dash followed by the impact/benefit
+- Include specific numbers when available (e.g. "250+ blood biomarkers", "$150B", "40M children")
+- Match the tone: direct, clear, no hype words
 
 FORMAT for LinkedIn:
 Same structure but use #CompanyName hashtags (not @handles). Sentences can be slightly longer. Still casual Josh voice — not corporate.
