@@ -218,8 +218,70 @@ export default function Home() {
       return;
     }
 
-    // Step 2: Send to Claude
-    addLog("Sending to Claude API...");
+    // Step 2: Ask Claude to look up social profiles
+    addLog("Looking up social profiles via Claude...");
+    try {
+      const lookupRes = await fetch("/api/claude", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          system: `You are a research assistant. Given information about startup companies, identify their X/Twitter handles and LinkedIn company page URLs, plus founder names and their X/Twitter handles and LinkedIn profile URLs.
+
+IMPORTANT RULES:
+- Only return handles/URLs you are confident are correct. If unsure, leave the field as null.
+- For X/Twitter, return the handle with @ prefix (e.g. "@companyname")
+- For LinkedIn, return the full URL (e.g. "https://www.linkedin.com/company/companyname" or "https://www.linkedin.com/in/foundername")
+- Return valid JSON only, no other text.
+
+Return a JSON array with this structure:
+[
+  {
+    "company": "Company Name",
+    "twitter": "@handle or null",
+    "linkedin": "https://linkedin.com/company/... or null",
+    "founder": "Founder Name or null",
+    "founder_twitter": "@handle or null",
+    "founder_linkedin": "https://linkedin.com/in/... or null"
+  }
+]`,
+          messages: [
+            {
+              role: "user",
+              content: `Find X/Twitter handles and LinkedIn URLs for these companies and their founders. Return JSON only.\n\n${inputText}`,
+            },
+          ],
+        }),
+      });
+      const lookupData = await lookupRes.json();
+      if (lookupRes.ok) {
+        const lookupText = lookupData.content?.[0]?.text || "";
+        // Extract JSON from response
+        const jsonMatch = lookupText.match(/\[[\s\S]*\]/);
+        if (jsonMatch) {
+          try {
+            const profiles = JSON.parse(jsonMatch[0]);
+            inputText += "\n\n--- SOCIAL PROFILES (use these for tagging) ---\n";
+            profiles.forEach((p) => {
+              inputText += `\nCOMPANY: ${p.company}\n`;
+              if (p.twitter) inputText += `  Company X/Twitter: ${p.twitter}\n`;
+              if (p.linkedin) inputText += `  Company LinkedIn: ${p.linkedin}\n`;
+              if (p.founder) inputText += `  Founder: ${p.founder}\n`;
+              if (p.founder_twitter) inputText += `  Founder X/Twitter: ${p.founder_twitter}\n`;
+              if (p.founder_linkedin) inputText += `  Founder LinkedIn: ${p.founder_linkedin}\n`;
+            });
+            const found = profiles.filter((p) => p.twitter || p.linkedin).length;
+            addLog(`Found social profiles for ${found}/${profiles.length} companies`, "success");
+          } catch (e) {
+            addLog("Could not parse social profile lookup", "error");
+          }
+        }
+      }
+    } catch (err) {
+      addLog(`Social lookup failed (continuing without): ${err.message}`, "error");
+    }
+
+    // Step 3: Send to Claude to generate posts
+    addLog("Generating posts via Claude...");
     try {
       const res = await fetch("/api/claude", {
         method: "POST",
@@ -229,7 +291,7 @@ export default function Home() {
           messages: [
             {
               role: "user",
-              content: `Here is information about the companies presenting at this month's Capital Factory First Look. Generate X/Twitter and LinkedIn posts for ALL companies listed.\n\n${inputText}`,
+              content: `Here is information about the companies presenting at this month's Capital Factory First Look, including their social profiles where available. Generate X/Twitter and LinkedIn posts for ALL companies listed. USE the social profiles provided to tag companies and founders correctly.\n\n${inputText}`,
             },
           ],
         }),
