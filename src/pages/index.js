@@ -52,14 +52,21 @@ CRITICAL RULES:
 - If you only have a company name, write something based on what you can infer.
 - Lead with a hook — a question, a bold statement, the problem they solve, or a wow factor. NEVER lead with context or description.
 - One punchy sentence per company. Two max if the company is complex.
-- Tag aggressively — @handles on Twitter, #CompanyName on LinkedIn.
+- Tag aggressively — every tag is an amplification opportunity. The person/company you tag might reshare.
 - End with an engagement hook — give people a reason to respond.
+
+TAGGING RULES — THIS IS CRITICAL:
+- The input data may include a "SOCIAL PROFILES FOUND ON PAGE" section with X/Twitter handles and LinkedIn URLs.
+- For X/TWITTER posts: Use @handle for companies AND founders if X/Twitter handles are available. If a founder's X handle is found, tag them after the company sentence. Only use #CompanyName if no X handle is found. NEVER put LinkedIn URLs in the X/Twitter version.
+- For LINKEDIN posts: Use #CompanyName hashtags for companies. Tag founders by their full name. If LinkedIn profile URLs are found, you can mention them. NEVER put @TwitterHandles in the LinkedIn version.
+- Tag the company first, then the founder(s). Example X format: "@CompanyHandle / @FounderHandle builds..."
+- If no social profiles are found for a company or founder, just use #CompanyName on both platforms.
 
 FORMAT for X/Twitter:
 Start with: Who's up this month at @CapitalFactory First Look? 👀
 
 Then for each company:
-[emoji] [#CompanyName or @CompanyHandle if known] [one plain-English sentence — lead with the problem or hook, not a description]
+[emoji] [@CompanyHandle (preferred) or #CompanyName] [one plain-English sentence — lead with the problem or hook, not a description] [tag @FounderHandle if known]
 👉 [domain.com]
 
 End with: Which one is your favorite? Who do you know that one of these entrepreneurs needs to meet?
@@ -111,7 +118,13 @@ KEY PATTERNS from this example:
 - Match the tone: direct, clear, no hype words
 
 FORMAT for LinkedIn:
-Same structure but use #CompanyName hashtags (not @handles). Sentences can be slightly longer. Still casual Josh voice — not corporate.
+Same structure but:
+- Use #CompanyName hashtags for companies (never @TwitterHandles)
+- Tag founders by full name (e.g. "founded by John Smith")
+- If a LinkedIn profile URL was found for a founder or company, include it naturally
+- Sentences can be slightly longer. Still casual Josh voice — not corporate.
+- Start with: Who's up this month at Capital Factory #FirstLook? 👀
+- End with: Which one is your favorite? Who do you know that one of these entrepreneurs needs to meet?
 
 Generate BOTH versions. Separate them with "---LINKEDIN---" on its own line. Put the X/Twitter version first.`;
 

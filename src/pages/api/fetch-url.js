@@ -24,6 +24,42 @@ export default async function handler(req, res) {
 
     const html = await response.text();
 
+    // Extract social media links before stripping HTML
+    const socialLinks = [];
+    const linkRegex = /<a[^>]+href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi;
+    let match;
+    while ((match = linkRegex.exec(html)) !== null) {
+      const href = match[1];
+      const text = match[2].replace(/<[^>]+>/g, "").trim();
+      if (
+        href.includes("twitter.com/") ||
+        href.includes("x.com/") ||
+        href.includes("linkedin.com/")
+      ) {
+        socialLinks.push({ url: href, text });
+      }
+    }
+
+    // Build a social profiles summary
+    let socialSummary = "";
+    if (socialLinks.length > 0) {
+      socialSummary = "\n\n--- SOCIAL PROFILES FOUND ON PAGE ---\n";
+      socialLinks.forEach(({ url, text }) => {
+        if (url.includes("twitter.com/") || url.includes("x.com/")) {
+          const handle = url.match(/(?:twitter\.com|x\.com)\/(@?[\w]+)/)?.[1];
+          if (handle && handle !== "share" && handle !== "intent" && handle !== "home") {
+            socialSummary += `X/Twitter: @${handle.replace(/^@/, "")} ${text ? `(${text})` : ""}\n`;
+          }
+        } else if (url.includes("linkedin.com/")) {
+          const linkedinPath = url.match(/linkedin\.com\/(?:in|company)\/([\w-]+)/)?.[1];
+          if (linkedinPath) {
+            const type = url.includes("/company/") ? "Company" : "Person";
+            socialSummary += `LinkedIn ${type}: ${url} ${text ? `(${text})` : ""}\n`;
+          }
+        }
+      });
+    }
+
     // Strip scripts, styles, and HTML tags to get clean text
     const cleaned = html
       .replace(/<script[\s\S]*?<\/script>/gi, "")
@@ -42,7 +78,7 @@ export default async function handler(req, res) {
       .replace(/\s+/g, " ")
       .trim();
 
-    res.status(200).json({ text: cleaned });
+    res.status(200).json({ text: cleaned + socialSummary });
   } catch (error) {
     res.status(500).json({ error: `Failed to fetch URL: ${error.message}` });
   }
