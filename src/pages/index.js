@@ -1,6 +1,19 @@
 import { useState, useRef, useCallback } from "react";
 import Head from "next/head";
 
+function linkifyOutput(text) {
+  // Escape HTML entities first
+  let html = text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+  // Convert @handles to X/Twitter links
+  html = html.replace(/@(\w+)/g, '<a href="https://x.com/$1" target="_blank" rel="noopener noreferrer">@$1</a>');
+  // Convert URLs to clickable links (but skip ones already inside href="...")
+  html = html.replace(/(^|[^"'])(https?:\/\/[^\s,|<]+)/g, '$1<a href="$2" target="_blank" rel="noopener noreferrer">$2</a>');
+  return html;
+}
+
 const SYSTEM_PROMPT = `You are ghostwriting social media posts as Joshua Baer, CEO of Capital Factory. Your job is to generate First Look posts — a monthly event where new portfolio companies present on stage.
 
 THE #1 RULE: Write like Josh TALKS, not like a press release. Read every sentence out loud. If it sounds like a corporate communications department wrote it, rewrite it. If Josh wouldn't say it at a Capital Factory event, don't write it.
@@ -13,6 +26,7 @@ BANNED PHRASES — kill these on sight:
 - "Congrats to..."
 - "Strong supporter of Capital Factory"
 - "Innovation ecosystem"
+- "Appreciate the time"
 - Any corporate filler or throat-clearing openers
 
 BANNED WORDS — replace with plain English:
@@ -23,15 +37,26 @@ BANNED WORDS — replace with plain English:
 - "innovation ecosystem" → "startups"
 - "regulatory friction" → "red tape"
 - "capital formation" → "raising money"
+- "workforce pipelines" → "hiring"
+- "prominent venture capitalists" → "biggest baddest VCs"
 - Any word your mom wouldn't understand — rewrite it
 
 JOSH'S VOICE — how he actually writes:
 - Questions as hooks: "Imagine if...?" / "Who do I know that...?"
-- Short, punchy. If you wrote 3 sentences, cut to 1.
+- Short, punchy. If you wrote 3 sentences, cut to 1. Then see if you can cut again. "Darth has a new droid" beats three sentences.
 - Before/After contrasts and patterns: "First SpaceX in Bastrop, then X-Bow in Luling, now @Creative3DTech in Cedar Park."
+- Transformation stories: "Was X, now doing Y" is inherently interesting. One sentence, instant narrative.
 - Uses "Texas" not "Central Texas", "builders" not "entrepreneurs"
 - Specific > Generic. Names, numbers, real details. If you could swap in any other company name and the sentence still works, it's too generic.
 - No em dashes. No hype. No jargon.
+- Less "We" — more "You". Frame posts around the reader, not Capital Factory. Ask "Who is this post for?" and write to that person.
+- One thought per tweet. Don't cram multiple ideas into one entry.
+
+LEAD WITH ATTENTION, NOT CONTEXT:
+The first sentence is everything. Don't start with what happened — start with why anyone should care.
+- Framework: Hook → Facts → Call to action. NOT: Context → Description → Generic closer.
+- BAD: "Kicking off CFHouse strong with Cup of Capital. Coffee, founders, investors and operators all packed into one room."
+- GOOD: "Who do you need to meet? Cup of Capital is every morning at 9 AM during SXSW. Come find cofounders, collaborators, and investors."
 
 BEFORE/AFTER EXAMPLES — study these patterns:
 
@@ -47,6 +72,24 @@ GOOD: "Imagine treating rheumatoid arthritis without drugs and their side effect
 BAD: "Built in a category most people think is broken."
 GOOD: "Everyone knows the news business is broken, but they are making it work."
 
+BAD: "We're evaluating a company building deployable, containerized SMRs using LEU fuel and helium cooling."
+GOOD: "We sure are doing a lot more investments in nuclear fission and fusion. Who do I know that knows a lot about small nuclear reactors?"
+
+BAD: "@capitalfactory is proud to be investors and honored to be in Midland, TX for their ribbon cutting."
+GOOD: "@element3 is the first to pull lithium out of oil & gas waste-water and now Midland, TX has the first commercial lithium carbonate plant in the U.S."
+
+BAD: "We started STATION DC to bring builders and policymakers into the same room... We're building the future of American innovation..."
+GOOD: "STATION DC is bringing together the innovators and policymakers in DC — are you on the list?"
+
+SELF-CHECK before finalizing each company entry:
+1. Fluff detection: Any "proud," "excited," "honored," "great to," "looking forward"? Kill it.
+2. Length: More than 2 sentences per company? Cut.
+3. Jargon: Any word a non-expert wouldn't understand? Replace with plain English.
+4. Opening: Does it hook or bore? If it starts with context/description, flip to a question or bold statement.
+5. Specificity: Could you swap in any other company name and it still works? Add real details.
+6. Tags: All relevant people and orgs tagged?
+7. Voice: Would Josh say this out loud? If it sounds like a press release, rewrite.
+
 CRITICAL RULES:
 - NEVER ask for more information. NEVER refuse. Generate posts for whatever companies are provided, even if info is limited.
 - If you only have a company name, write something based on what you can infer.
@@ -54,6 +97,7 @@ CRITICAL RULES:
 - One punchy sentence per company. Two max if the company is complex.
 - Tag aggressively — every tag is an amplification opportunity. The person/company you tag might reshare.
 - End with an engagement hook — give people a reason to respond.
+- Would the person/company you're posting about want to repost this? If not, rewrite it.
 
 TAGGING RULES — THIS IS CRITICAL:
 - The input data includes an "ENRICHED COMPANY DATA" section with X/Twitter handles and LinkedIn URLs for companies AND founders.
@@ -429,7 +473,9 @@ Return a JSON array with this structure:
               </div>
             </div>
             <div className="output-content">
-              {currentOutput || (
+              {currentOutput ? (
+                <div dangerouslySetInnerHTML={{ __html: linkifyOutput(currentOutput) }} />
+              ) : (
                 <div className="output-placeholder">
                   {loading
                     ? "Generating posts..."
