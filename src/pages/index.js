@@ -86,8 +86,8 @@ BAD: "We started STATION DC to bring builders and policymakers into the same roo
 GOOD: "STATION DC is bringing together the innovators and policymakers in DC — are you on the list?"
 
 BAD: "#SkyboundMedtech builds medical tech to keep humans healthy in space — while creating defense and clinical applications back on Earth."
-GOOD: "Astronauts can't go to a hospital. #SkyboundMedtech is building [specific device/tech] so doctors can [specific thing] from mission control."
-NOTE: "builds medical tech" tells the reader NOTHING. What is the tech? What does it do? Be concrete. The reader should be able to picture the actual product.
+GOOD: "#SkyboundMedtech is building [specific device/tech] so doctors can [specific thing] from mission control. Astronauts can't go to a hospital."
+NOTE: "builds medical tech" tells the reader NOTHING. What is the tech? What does it do? Be concrete. The reader should be able to picture the actual product. And always lead with the emoji + company tag, not a standalone sentence.
 
 SELF-CHECK — run this on EVERY company entry before including it:
 1. Fluff detection: Any "proud," "excited," "honored," "great to," "looking forward"? Kill it.
@@ -130,8 +130,10 @@ FORMAT for X/Twitter:
 Start with: Who's up this month at @CapitalFactory First Look? 👀
 
 Then for each company:
-[emoji] [@CompanyHandle or #CompanyName] [/ @FounderHandle if known] [one plain-English sentence — lead with the problem or hook]
+[emoji] [@CompanyHandle or #CompanyName] [/ @FounderHandle if known] [plain-English description of what they do, with problem/hook woven in]
 👉 [domain.com]
+
+IMPORTANT: Always start with emoji + company tag. Never start with a sentence before the company name.
 
 End with: Which one is your favorite? Who do you know that one of these entrepreneurs needs to meet?
 
@@ -139,49 +141,49 @@ REAL EXAMPLE of a complete First Look X/Twitter post (match this structure exact
 
 Who's up this month at @CapitalFactory First Look? 👀
 
-🧬 What if your kid had a rare genetic disease and there was no drug for it? #AlphaRoseTheraputics builds a custom genetic medicine for that specific child.
+🧬 #AlphaRoseTheraputics — what if your kid had a rare genetic disease and there was no drug for it? They build a custom genetic medicine for that specific child.
 👉 alpharose.com
 
-🦾 10 million people are missing a hand. @AltBionics makes a bionic hand that costs a fraction of what's out there and actually works like a real one.
+🦾 @AltBionics makes a bionic hand that costs a fraction of what's out there and actually works like a real one. 10 million people are missing a hand.
 👉 altbionics.com
 
-🛩️ Birds don't flap the whole time. They ride the wind. #AmericanTenet built drones that do the same thing and fly 3x longer on the same battery.
+🛩️ #AmericanTenet built drones that ride the wind like birds and fly 3x longer on the same battery.
 👉 americantenet.com
 
-🤖 Ultrasound techs burn out fast. #ApricityRobotics built a robot arm that does the scan so the doctor can read it from anywhere.
+🤖 #ApricityRobotics built a robot arm that does ultrasound scans so the doctor can read it from anywhere. Ultrasound techs burn out fast and this fixes that.
 👉 apricity.ai
 
-🏎️ How do you test self-driving tech at 180 mph? @Code19Racing races autonomous cars on real tracks.
+🏎️ @Code19Racing races autonomous cars on real tracks at 180 mph to test self-driving tech.
 👉 code19.ai
 
-🛡️ Small businesses get hacked all the time and can't afford a security team. @cytexsmb handles cybersecurity and compliance for them in one tool.
+🛡️ @cytexsmb handles cybersecurity and compliance for small businesses in one tool. Most SMBs get hacked because they can't afford a security team.
 👉 cytex.io
 
-💳 $150B sits in HSA and FSA accounts that people forget to use. #Gale lets you spend it at checkout like a normal credit card.
+💳 #Gale lets you spend your HSA and FSA money at checkout like a normal credit card. $150B sits in those accounts that people forget to use.
 👉 withgale.com
 
-🧒 40 million kids in the US are on Medicaid. Most can't find a therapist who takes it. #HealthyYoungMinds does online therapy and actually accepts Medicaid.
+🧒 #HealthyYoungMinds does online therapy for kids and teens and actually accepts Medicaid. 40 million kids are on Medicaid and most can't find a therapist who takes it.
 👉 healthyyoungminds.com
 
-🧹 You run an Airbnb. Guest checks out at 11, next one arrives at 3. @UseKeepers finds you a vetted housekeeper in your area on demand.
+🧹 @UseKeepers finds short-term rental hosts a vetted housekeeper on demand. Guest checks out at 11, next one arrives at 3.
 👉 usekeepers.com
 
 🩸 @molecularyou tests 250+ things in your blood and tells you exactly what to eat, how to train, and what to watch out for.
 👉 molecularyou.com
 
-🏃 What if your running app could tap you on the wrist to fix your form mid-stride? #Stride does that with haptic feedback while you run.
+🏃 #Stride taps you on the wrist mid-run to fix your form in real time using haptic feedback.
 
 Which one is your favorite? Who do you know that one of these entrepreneurs needs to meet?
 
 KEY PATTERNS from this example — FOLLOW THESE EXACTLY:
-- Lead with the PROBLEM or a QUESTION, then say how the company solves it. Never start with "[Company] does X."
-- Each company gets ONE emoji + a hook/problem + what they do + domain on next line with 👉
+- ALWAYS start each entry with: [emoji] [@handle or #CompanyName]. The company tag comes FIRST, right after the emoji. Always.
+- Then describe what they do in plain English. You can weave in the problem/hook/context after or around the description.
+- Each company gets ONE emoji + company tag + description + domain on next line with 👉
 - Blank line between each company block
 - Use @handle if the company has a known Twitter handle, otherwise #CompanyName
 - Plain English ONLY. If your mom wouldn't say it, rewrite it.
 - Include specific numbers when available ("250+", "$150B", "40M kids")
 - The reader should be able to PICTURE what this company does. "builds medical tech" = FAIL. "built a robot arm that does ultrasound scans" = PASS.
-- NEVER start an entry with "#CompanyName does..." or "#CompanyName builds..." — start with the problem, the question, or the surprising fact. THEN name the company.
 
 FORMAT for LinkedIn:
 Same structure but:
